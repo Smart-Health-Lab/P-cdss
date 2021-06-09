@@ -1,0 +1,39 @@
+@import "~antd/dist/antd.css";
+
+.title {
+  display: "flex";
+  height: 35px;
+  /* background: rgba(255, 255, 255, 0.2); */
+  margin: 18px 28px 18px 28px;
+}
+
+/* Bar chart style */
+.ct-series-a .ct-bar {
+  stroke: rgb(224, 34, 1);
+  /* stroke-width: 20px; */
+  /* stroke-dasharray: 20px; */
+  /* stroke-linecap: round; */
+}
+.ct-series-b .ct-bar {
+  stroke: rgb(236, 128, 4);
+  /* stroke-width: 20px; */
+  /* stroke-dasharray: 20px; */
+  /* stroke-linecap: round; */
+}
+
+/* Pie chart style */
+.ct-series-a .ct-slice-pie {
+  fill: hsl(120, 40%, 60%);
+  stroke: white;
+  stroke-width: 4px;
+}
+.ct-series-b .ct-slice-pie {
+  fill: hsl(34, 96%, 43%);
+  stroke: white;
+  stroke-width: 4px;
+}
+.ct-series-c .ct-slice-pie {
+  fill: hsl(315, 95%, 48%);
+  stroke: white;
+  stroke-width: 4px;
+}

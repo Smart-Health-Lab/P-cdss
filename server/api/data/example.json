@@ -1,0 +1,23 @@
+{
+    "age": 7, "cm_breath": -1, "cm_dp": 80, "cm_pc": 65, "cm_sp": -1, "cm_tmpt": 36.5,
+    "in_date": "2020-11-10", "in_time": "08:05", "on_date": "2020-11-09", "on_time": "23:30",
+    "cm_gcs_e": "Eyes opening spontaneously 자발적으로 눈 뜬 상태",
+    "cm_gcs_m": "Obeys commands 지시에 따름",
+    "cm_gcs_v": "Orientated 적절하게 대답",
+    "cm_avpu": "A",
+    "alco": "음주의 증거 없음",
+    "intent": "비의도적 손상",
+    "method": "도보",
+    "mech": "1m미만 높이에서 떨어지거나 뛰어내리거나 떠밀림",
+    "place1": "집",
+    "place2": "실내",
+    "place3": "nan",
+    "factor_u": "nan",
+    "iact": "기본 일상생활",
+    "sexx": "여자",
+    "sympu1": "headache",
+    "sympu2": null,
+    "sympu3": null,
+    "sympu4": null,
+    "sympu5": null
+}
