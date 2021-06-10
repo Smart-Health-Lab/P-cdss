@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Radio, Divider } from "antd";
+import { Table, Card, Button } from "antd";
 import data from "../data/ohcaData";
 
 const columns = [
@@ -46,20 +46,29 @@ class InformationOhca extends Component {
     const { selectedRowKeys } = this.state;
 
     return (
-      <Table
-        rowSelection={{
-          selectedRowKeys,
-          onChange: (selectedRowKeys, selectedRows) => {
-            this.setState({
-              selectedRowKeys: selectedRowKeys,
-              selectedRows: selectedRows,
-            });
-          },
-        }}
-        scroll={{ x: 4000, y: 1000 }}
-        columns={columns}
-        dataSource={data.data}
-      />
+      <div className="">
+        <Table
+          rowSelection={{
+            selectedRowKeys,
+            onChange: (selectedRowKeys, selectedRows) => {
+              this.setState({
+                selectedRowKeys: selectedRowKeys,
+                selectedRows: selectedRows,
+              });
+            },
+          }}
+          scroll={{ x: 4000, y: 1000 }}
+          columns={columns}
+          dataSource={data.data}
+        />
+        <div style={{ display: "flex" }}>
+          <Card title="" bordered={false} style={{ background: "none" }}>
+            <Button type="primary" size="large">
+              Submit
+            </Button>
+          </Card>
+        </div>
+      </div>
     );
   }
 }
