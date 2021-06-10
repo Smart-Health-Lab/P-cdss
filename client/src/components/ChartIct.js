@@ -1,20 +1,7 @@
 import React, { Component } from "react";
 import { Card, Divider, Row, Col } from "antd";
 import Plot from "react-plotly.js";
-// import createPlotlyComponent from "react-plotly.js/factory";
-// import ChartistGraph from "react-chartist";
-// import {
-//   dataBar,
-//   optionsBar,
-//   dataPie,
-//   optionsPie,
-//   dataLine,
-//   optionsLine,
-// } from "../fakeData/fakeData";
 import { densityPlotData } from "../chartData/densityPlot";
-// import CustomCard from './CustomCard';
-
-// const Plot = createPlotlyComponent(Plotly);
 
 class ChartIct extends Component {
   state = {

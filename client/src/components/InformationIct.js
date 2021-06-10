@@ -10,7 +10,6 @@ import {
   TimePicker,
 } from "antd";
 import { inputDataList } from "../inputData/inputDataList";
-// import CustomCard from "./CustomCard";
 
 const { Option } = Select;
 const { Title } = Typography;
