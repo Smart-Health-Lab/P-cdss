@@ -41,7 +41,7 @@ class InformationOhca extends Component {
 
   render() {
     console.log("InformationOhca is rendering...");
-    console.log("state ====> ", this.state);
+    console.log("InformationOhca state ====> ", this.state);
 
     const { selectedRowKeys } = this.state;
 

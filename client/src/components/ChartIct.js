@@ -171,6 +171,21 @@ class ChartIct extends Component {
             </>
           )}
         </Row>
+        <Row>
+          <Card title="Result sentence 01">
+            <div style={{ margin: 10, fontSize: 20 }}>
+              이 환아가 속한 그룹의 뇌출혈 확률은 {}% 입니다.
+            </div>
+            <div style={{ margin: 10, fontSize: 20 }}>
+              같은 나이 그룹에서 상위 21 percentile의 위험도에 속합니다.
+            </div>
+          </Card>
+        </Row>
+        <Row>
+          <Card title="Result sentence 02">
+            <div style={{ margin: 10, fontSize: 20 }}>하하하</div>
+          </Card>
+        </Row>
       </div>
     );
   }

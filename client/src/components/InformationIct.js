@@ -269,8 +269,8 @@ class InformationIct extends Component {
   };
 
   render() {
-    // console.log("Information.js 렌더링, state", this.state);
-    // console.log("Information.js 렌더링, props", this.props);
+    console.log("Information.js 렌더링, state", this.state);
+    console.log("Information.js 렌더링, props", this.props);
     // console.log(inputDataList);
     // console.log(Object.keys(inputDataList).length);
 

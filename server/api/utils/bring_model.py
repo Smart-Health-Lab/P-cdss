@@ -75,6 +75,7 @@ def make_pred_model(input_shapes, output_config, sympu_col_name='sympu_terms'):
 
 
 model = make_pred_model(input_shapes, output_config)
+
 model.load_weights(os.path.join(base_dir, 'data', 'model',
                                 '11_10@checkpoint@auprc@test.hdf'))
 
