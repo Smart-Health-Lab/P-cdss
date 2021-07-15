@@ -18,7 +18,6 @@ const columns = [
   { title: "Pre_er_defib", dataIndex: "pre_er_defib" },
   { title: "Pre_er_ekg", dataIndex: "pre_er_ekg" },
   { title: "Witness", dataIndex: "witness" },
-  { title: "Year", dataIndex: "year" },
   { title: "Phx_dm", dataIndex: "phx_dm" },
   { title: "Phx_heart", dataIndex: "phx_heart" },
   { title: "Phx_htn", dataIndex: "phx_htn" },
@@ -27,6 +26,7 @@ const columns = [
   { title: "Phx_stroke", dataIndex: "phx_stroke" },
   { title: "Phx_dyslipi", dataIndex: "phx_dyslipi" },
   { title: "Arrest_er_time", dataIndex: "arrest_er_time" },
+  { title: "Cpr", dataIndex: "cpr" },
 ];
 
 class InformationOhca extends Component {
