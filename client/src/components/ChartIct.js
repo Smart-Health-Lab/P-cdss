@@ -8,13 +8,6 @@ class ChartIct extends Component {
     inputData: this.props.inputData,
     outputData: this.props.outputData,
   };
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     inputData: null,
-  //     outputData: null,
-  //   };
-  // }
 
   componentDidMount() {}
 
@@ -101,9 +94,11 @@ class ChartIct extends Component {
         </Row>
         <Row style={{ display: "flex", justifyContent: "row" }}>
           {this.props.inputData === null ? (
-            <Col style={{ margin: 10, fontSize: 15 }}>
-              {"불러올 정보가 없습니다"}
-            </Col>
+            <Card bordered={false} style={{ margin: 10, width: 1840 }}>
+              <Col style={{ margin: 10, fontSize: 15 }}>
+                {"불러올 정보가 없습니다"}
+              </Col>
+            </Card>
           ) : (
             <>
               {Object.entries(densityPlotData).map((curr, index, arr) => {
@@ -173,17 +168,31 @@ class ChartIct extends Component {
         </Row>
         <Row>
           <Card title="Result sentence 01">
-            <div style={{ margin: 10, fontSize: 20 }}>
-              이 환아가 속한 그룹의 뇌출혈 확률은 {}% 입니다.
-            </div>
-            <div style={{ margin: 10, fontSize: 20 }}>
-              같은 나이 그룹에서 상위 {} percentile의 위험도에 속합니다.
-            </div>
+            {this.props.inputData === null ? (
+              <Col style={{ margin: 10, fontSize: 15 }}>
+                {"불러올 정보가 없습니다"}
+              </Col>
+            ) : (
+              <>
+                <div style={{ margin: 10, fontSize: 20 }}>
+                  이 환아가 속한 그룹의 뇌출혈 확률은 {}% 입니다.
+                </div>
+                <div style={{ margin: 10, fontSize: 20 }}>
+                  같은 나이 그룹에서 상위 {} percentile의 위험도에 속합니다.
+                </div>
+              </>
+            )}
           </Card>
         </Row>
         <Row>
           <Card title="Result sentence 02">
-            <div style={{ margin: 10, fontSize: 20 }}>CDSS는 CT를 {}</div>
+            {this.props.inputData === null ? (
+              <Col style={{ margin: 10, fontSize: 15 }}>
+                {"불러올 정보가 없습니다"}
+              </Col>
+            ) : (
+              <div style={{ margin: 10, fontSize: 20 }}>CDSS는 CT를 {}</div>
+            )}
           </Card>
         </Row>
       </div>

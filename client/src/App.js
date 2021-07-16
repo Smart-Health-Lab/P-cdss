@@ -19,6 +19,8 @@ class App extends Component {
       selectedMenu: null,
       inputData: null,
       outputData: null,
+      inputData02: null,
+      outputData02: null,
     };
   }
 

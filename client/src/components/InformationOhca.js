@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Card, Button } from "antd";
+import { Table, Card, Button, Alert } from "antd";
 import data from "../data/ohcaData";
 
 const columns = [
@@ -36,8 +36,41 @@ class InformationOhca extends Component {
       selectionType: "checkbox",
       selectedRowKeys: [],
       selectedRows: [],
+      isSubmitClicked: false,
+      isResponseCorrect: false,
     };
   }
+
+  checkState = () => {
+    // 체크 하고 submit 눌렀는지 확인
+    if (this.state.selectedRows.length === 1) {
+      return new Promise((resolve, reject) => {
+        resolve(true);
+      });
+    } else if (this.state.selectedRows.length > 1) {
+      alert("한명만 선택해 주세요");
+      return new Promise((resolve, reject) => {
+        resolve(false);
+      });
+    } else {
+      alert("환자를 선택해 주세요");
+      return new Promise((resolve, reject) => {
+        resolve(false);
+      });
+    }
+  };
+
+  fetchFunc = () => {
+    return fetch("http://127.0.0.1:5000/test02", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        ...this.state.selectedRows[0],
+      }),
+    });
+  };
 
   render() {
     console.log("InformationOhca is rendering...");
@@ -63,7 +96,23 @@ class InformationOhca extends Component {
         />
         <div style={{ display: "flex" }}>
           <Card title="" bordered={false} style={{ background: "none" }}>
-            <Button type="primary" size="large">
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                this.checkState().then((bool) => {
+                  if (bool === true) {
+                    this.fetchFunc()
+                      .then((response) => response.json())
+                      .then((res) => {
+                        this.setState({ isSubmitClicked: false });
+                        console.log(res);
+                        // 정상적인 output을 받은 경우
+                      });
+                  }
+                });
+              }}
+            >
               Submit
             </Button>
           </Card>
