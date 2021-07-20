@@ -6,6 +6,7 @@ import os
 import joblib
 from pathlib import Path
 import numpy as np
+import json
 
 from utils.bring_model import model
 from utils.utils import *
@@ -52,7 +53,7 @@ def test01():
 @app.route('/test02', methods=['POST'])
 def test02():
     input_dict = request.get_json()
-    print("test02 routing input data: ", input_dict)
+    # print("test02 routing input data: ", input_dict)
 
     input_data_dict = {
         "act": input_dict['act'],
@@ -79,29 +80,44 @@ def test02():
         "arrest_er_time": input_dict['arrest_er_time'],
         "cpr": input_dict['cpr'],
     },
-    print(len(input_data_dict))
+    if input_data_dict[0]['cpr'] == 'TRUE':
+        input_data_dict[0]['cpr'] = True
+    elif input_data_dict[0]['cpr'] == 'FALSE':
+        input_data_dict[0]['cpr'] = False
+
+    # print("refactored input data: ", input_data_dict)
+    # print("refactored input data values: ", input_data_dict[0].values())
 
     list_proba = []
-    # for lower in np.arange(0, 1860, 60):
-    #     # print(lower)
 
-    #     filename = "./PCDSS_OHCA/" + "lgb" + str(int(lower/60)) + ".pkl"
-    #     # print(filename)
+    for lower in np.arange(0, 1860, 60):
+        # print(lower)
 
-    #     testX = np.reshape(input_dict["input_data"], (1, -1))
+        filename = "./PCDSS_OHCA/" + "lgb" + str(int(lower/60)) + ".pkl"
+        # print(filename)
 
-    #     # Load model
-    #     model = joblib.load(filename)
-    #     proba = model.predict_proba(testX)
-    #     proba_result = proba[:, 1].mean()
-    #     list_proba.append(proba_result)
-    #     # print(proba_result)
+        testX = np.reshape(list(input_data_dict[0].values()), (1, -1))
 
-    # X_plot = list(range(0, 31))
-    # Y_plot = np.array(list_proba)*100
+        # Load model
+        model = joblib.load(filename)
+        proba = model.predict_proba(testX)
+        proba_result = proba[:, 1].mean()
+        list_proba.append(proba_result)
+        # print(proba_result)
 
-    # return {"status": 200, "output_data": {"X_plot": X_plot, "Y_plot": Y_plot, "list_proba": list_proba}}
-    return {"status": 200}
+    # print("list_proba : ", list_proba)
+    # print("length of list_proba : ", len(list_proba))
+    X_plot = list(range(0, 31))
+    Y_plot = np.array(list_proba)*100
+    Y_plot = list(Y_plot)
+
+    output_data_dict = {"X_plot": X_plot,
+                        "Y_plot": Y_plot, "list_proba": list_proba}
+    json_string = json.dumps({"status": 200, "output_data": output_data_dict})
+    # print(json_string)
+
+    return json_string
+    # return {"status": 200}
 
 
 app.run(debug=True)

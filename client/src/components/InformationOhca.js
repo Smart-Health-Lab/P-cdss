@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table, Card, Button, Alert } from "antd";
+import { Redirect } from "react-router-dom";
 import data from "../data/ohcaData";
 
 const columns = [
@@ -78,6 +79,10 @@ class InformationOhca extends Component {
 
     const { selectedRowKeys } = this.state;
 
+    if (this.state["isResponseCorrect"]) {
+      return <Redirect to="/chartOhca" />;
+    }
+
     return (
       <div className="">
         <Table
@@ -100,14 +105,25 @@ class InformationOhca extends Component {
               type="primary"
               size="large"
               onClick={() => {
-                this.checkState().then((bool) => {
-                  if (bool === true) {
+                this.checkState().then((val) => {
+                  if (val === true) {
                     this.fetchFunc()
                       .then((response) => response.json())
                       .then((res) => {
                         this.setState({ isSubmitClicked: false });
-                        console.log(res);
+                        // console.log("response ====> ", res);
+
                         // 정상적인 output을 받은 경우
+                        if (res.status === 200) {
+                          this.setState({ isResponseCorrect: true });
+                          this.props.changeMenu("4");
+                          this.props.changeAppState(
+                            this.state.selectedRows[0],
+                            res.output_data
+                          );
+                        } else {
+                          console.log("== submit 에러 ==", val);
+                        }
                       });
                   }
                 });

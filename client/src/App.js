@@ -32,6 +32,9 @@ class App extends Component {
   changeAppState = (inputData, outputData) => {
     this.setState({ inputData: inputData, outputData: outputData });
   };
+  changeAppStateOhca = (inputData, outputData) => {
+    this.setState({ inputData02: inputData, outputData02: outputData });
+  };
 
   changeIsRedirect = () => {
     this.setState({ isRedirect: true });
@@ -116,7 +119,7 @@ class App extends Component {
                         route={"informationOhca"}
                         isRedirect={this.state["isRedirect"]}
                         changeIsRedirect={this.changeIsRedirect}
-                        changeAppState={this.changeAppState}
+                        changeAppState={this.changeAppStateOhca}
                       />
                     );
                   }}
@@ -130,8 +133,8 @@ class App extends Component {
                         route={"chartOhca"}
                         isRedirect={this.state["isRedirect"]}
                         changeIsRedirect={this.changeIsRedirect}
-                        inputData={this.state.inputData}
-                        outputData={this.state.outputData}
+                        inputData={this.state.inputData02}
+                        outputData={this.state.outputData02}
                       />
                     );
                   }}
