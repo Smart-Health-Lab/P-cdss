@@ -23,7 +23,15 @@ class ResultOhca extends Component {
               </Col>
             ) : (
               Object.entries(this.props.inputData).map((curr, index, arr) => {
-                console.log(curr);
+                if (curr[0] === "key") {
+                  return null;
+                } else {
+                  return (
+                    <Col style={{ margin: 10, fontSize: 15 }} key={index}>
+                      {curr[0] + ": " + curr[1]}
+                    </Col>
+                  );
+                }
               })
             )}
           </Row>
