@@ -1,11 +1,11 @@
-### `Getting Started`
+### `install node.js`
 
-install node.js
+for linux : $ sudo apt install nodejs
 
 ### `npm install`
 
-go to project directory & npm install
+go to project directory -> $ npm install
 
 ### `npm start`
 
-start React local server
+go to project directory -> $ npm start

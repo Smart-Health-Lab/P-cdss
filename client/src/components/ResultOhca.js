@@ -2,6 +2,33 @@ import React, { Component } from "react";
 import { Card, Divider, Row, Col } from "antd";
 import Plot from "react-plotly.js";
 
+const mappingDict = {
+  name: "환자명",
+  act: "발생당시 활동",
+  age: "나이",
+  bystander_cpr: "구조자의 CPR여부",
+  cause_disease: "발생원인",
+  er_defib: "제세동 여부_ER",
+  er_ekg: "심전도 여부_ER",
+  first_defib_place: "최초 제세동 장소",
+  first_ekg_place: "최초 심전도 장소",
+  h_place_public: "발생장소",
+  h_sex: "성별",
+  pre_er_cpr: "ER 전 CPR여부",
+  pre_er_defib: "ER 전 제새동여부",
+  pre_er_ekg: "ER 전 심전도여부",
+  witness: "목격자",
+  phx_dm: "당뇨력",
+  phx_heart: "심장질환력",
+  phx_htn: "고혈압력",
+  phx_renal: "신장질환력",
+  phx_respi: "호흡기질환력",
+  phx_stroke: "뇌졸중력",
+  phx_dyslipi: "지질혈증력",
+  arrest_er_time: "ER 도착 시간",
+  cpr: "CPR 수행여부",
+};
+
 class ResultOhca extends Component {
   state = {
     inputData: this.props.inputData,
@@ -9,6 +36,9 @@ class ResultOhca extends Component {
   };
 
   render() {
+    console.log("ResultOhaca.js 렌더링..");
+    console.log("this.props ==>", this.props);
+
     return (
       <div>
         <Card
@@ -28,7 +58,7 @@ class ResultOhca extends Component {
                 } else {
                   return (
                     <Col style={{ margin: 10, fontSize: 15 }} key={index}>
-                      {curr[0] + ": " + curr[1]}
+                      {mappingDict[curr[0]] + ": " + curr[1]}
                     </Col>
                   );
                 }
@@ -57,12 +87,29 @@ class ResultOhca extends Component {
                     {
                       x: this.props.outputData["X_plot"],
                       y: this.props.outputData["Y_plot"],
-                      type: "line",
-                      mode: "markers",
+                      // type: "line",
+                      // mode: "line",
+                      // xaxis: {
+                      //   title: "Min",
+                      // },
+                      // yaxis: {
+                      //   title: "Survival rate",
+                      // },
+                      line: { shape: "spline" },
                       marker: { color: "#E64506" },
                     },
                   ]}
-                  layout={{ width: 500, height: 500, title: "" }}
+                  layout={{
+                    width: 500,
+                    height: 500,
+                    title: "",
+                    xaxis: {
+                      title: "Min",
+                    },
+                    yaxis: {
+                      title: "Survival rate",
+                    },
+                  }}
                 />
               </Col>
             )}

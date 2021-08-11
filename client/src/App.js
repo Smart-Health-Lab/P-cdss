@@ -147,7 +147,7 @@ class App extends Component {
               : this.setState({ isRedirect: true })}
           </Content>
           <Footer style={{ textAlign: "center", background: "#fff" }}>
-            SHL ©2020
+            SHL ©2021
           </Footer>
         </Layout>
       </Layout>

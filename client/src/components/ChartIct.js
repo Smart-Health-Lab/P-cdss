@@ -12,19 +12,89 @@ class ChartIct extends Component {
   componentDidMount() {}
 
   informationFunc = (currArr, key) => {
+    let titleKR = null;
+    if (currArr[0] === "name") {
+      titleKR = "이름";
+    } else if (currArr[0] === "age") {
+      titleKR = "나이";
+    } else if (currArr[0] === "cm_breath") {
+      titleKR = "분당 호흡수";
+    } else if (currArr[0] === "cm_dp") {
+      titleKR = "이완기 혈압";
+    } else if (currArr[0] === "cm_pc") {
+      titleKR = "분당 맥박수";
+    } else if (currArr[0] === "cm_sp") {
+      titleKR = "수축기 혈압";
+    } else if (currArr[0] === "cm_tmpt") {
+      titleKR = "체온";
+    } else if (currArr[0] === "on_date") {
+      titleKR = "손상발생 날짜";
+    } else if (currArr[0] === "in_date") {
+      titleKR = "입실 날짜";
+    } else if (currArr[0] === "on_time") {
+      titleKR = "손상발생 시간";
+    } else if (currArr[0] === "in_time") {
+      titleKR = "입실 시간";
+    } else if (currArr[0] === "cm_avpu") {
+      titleKR = "AVPU";
+    } else if (currArr[0] === "cm_gcs_e") {
+      titleKR = "GCS_Eye";
+    } else if (currArr[0] === "cm_gcs_v") {
+      titleKR = "GCS_Verbal";
+    } else if (currArr[0] === "cm_gcs_m") {
+      titleKR = "GCS_Motor";
+    } else if (currArr[0] === "alco") {
+      titleKR = "음주여부";
+    } else if (currArr[0] === "intent") {
+      titleKR = "손상의도";
+    } else if (currArr[0] === "method") {
+      titleKR = "내원수단";
+    } else if (currArr[0] === "mech") {
+      titleKR = "손상기전";
+    } else if (currArr[0] === "place1") {
+      titleKR = "발생장소1";
+    } else if (currArr[0] === "place2") {
+      titleKR = "실 내/외 여부";
+    } else if (currArr[0] === "place3") {
+      titleKR = "발생장소2";
+    } else if (currArr[0] === "factor_u") {
+      titleKR = "손상 유발물질";
+    } else if (currArr[0] === "sports") {
+      titleKR = "스포츠 유형";
+    } else if (currArr[0] === "iact") {
+      titleKR = "손상 시 활동";
+    } else if (currArr[0] === "sympu1") {
+      titleKR = "주증상1";
+    } else if (currArr[0] === "sympu2") {
+      titleKR = "주증상2";
+    } else if (currArr[0] === "sympu3") {
+      titleKR = "주증상3";
+    } else if (currArr[0] === "sympu4") {
+      titleKR = "주증상4";
+    } else if (currArr[0] === "sympu5") {
+      titleKR = "주증상5";
+    }
+
     return currArr[0] === "sexx" ? (
       <Col style={{ margin: 10, fontSize: 15 }} key={key}>
-        {"sex" + ": " + currArr[1]}
+        {"성별" + ": " + currArr[1]}
       </Col>
     ) : (
       <Col style={{ margin: 10, fontSize: 15 }} key={key}>
-        {currArr[0] + ": " + currArr[1]}
+        {titleKR + ": " + currArr[1]}
       </Col>
     );
   };
 
   chartCard = (title, x, y, type, mode, xPoint, yMax) => {
     // console.log("xPoint", xPoint);
+    if (title === "tbi") {
+      title = "Traumatic Brain Injury";
+    } else if (title === "ich") {
+      title = "Intracranial Hemorrhage";
+    } else if (title === "op") {
+      title = "Operation";
+    }
     return (
       <Card title={title} bordered={false} style={{ margin: 10, width: 600 }}>
         <Plot
@@ -52,7 +122,18 @@ class ChartIct extends Component {
             //   marker: { color: "#F9AD0D" },
             // },
           ]}
-          layout={{ width: 500, height: 500, title: "", showlegend: false }}
+          layout={{
+            width: 500,
+            height: 500,
+            title: "",
+            showlegend: false,
+            xaxis: {
+              title: "Kernal Density",
+            },
+            yaxis: {
+              title: "Probability",
+            },
+          }}
         />
       </Card>
     );
@@ -72,7 +153,7 @@ class ChartIct extends Component {
       <div className="">
         <Row>
           <Card
-            title="Information"
+            title="Patient's Information"
             bordered={false}
             style={{ margin: 10, width: 1840 }}
           >
@@ -114,7 +195,7 @@ class ChartIct extends Component {
                 );
               })}
               <Card
-                title="diag_all"
+                title="Predicted Diagnosis"
                 bordered={false}
                 style={{ margin: 10, width: 600 }}
               >
@@ -135,11 +216,21 @@ class ChartIct extends Component {
                     //   marker: { color: "#F9AD0D" },
                     // },
                   ]}
-                  layout={{ width: 500, height: 500, title: "" }}
+                  layout={{
+                    width: 500,
+                    height: 500,
+                    title: "",
+                    xaxis: {
+                      title: "Predicted ICD-10 Diagnosis",
+                    },
+                    yaxis: {
+                      title: "Probability",
+                    },
+                  }}
                 />
               </Card>
               <Card
-                title="emrt"
+                title=" Emergency Result"
                 bordered={false}
                 style={{ margin: 10, width: 600 }}
               >
@@ -160,13 +251,23 @@ class ChartIct extends Component {
                     //   marker: { color: "#F9AD0D" },
                     // },
                   ]}
-                  layout={{ width: 500, height: 500, title: "" }}
+                  layout={{
+                    width: 500,
+                    height: 500,
+                    title: "",
+                    xaxis: {
+                      title: "Predicted Emergency Result",
+                    },
+                    yaxis: {
+                      title: "Probability",
+                    },
+                  }}
                 />
               </Card>
             </>
           )}
         </Row>
-        <Row>
+        {/* <Row>
           <Card title="Result sentence 01">
             {this.props.inputData === null ? (
               <Col style={{ margin: 10, fontSize: 15 }}>
@@ -194,7 +295,7 @@ class ChartIct extends Component {
               <div style={{ margin: 10, fontSize: 20 }}>CDSS는 CT를 {}</div>
             )}
           </Card>
-        </Row>
+        </Row> */}
       </div>
     );
   }

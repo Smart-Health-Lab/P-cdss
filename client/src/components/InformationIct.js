@@ -57,6 +57,17 @@ class InformationIct extends Component {
   componentDidMount() {}
 
   componentWrapper = (title, component) => {
+    let titleKR = null;
+    if (title === "on_date") {
+      titleKR = "손상발생 날짜";
+    } else if (title === "in_date") {
+      titleKR = "입실 날짜";
+    } else if (title === "on_time") {
+      titleKR = "손상발생 시간";
+    } else if (title === "in_time") {
+      titleKR = "입실 시간";
+    }
+
     return (
       <div style={{ marginRight: 10 }}>
         <div
@@ -74,7 +85,7 @@ class InformationIct extends Component {
               marginLeft: 5,
             }}
           >
-            {title}
+            {titleKR}
           </p>
           {this.state["isSubmitClicked"] ? (
             this.state[title] === null ? (
@@ -97,6 +108,23 @@ class InformationIct extends Component {
   };
 
   inputComponent = (title, keyIndex) => {
+    let titleKR = null;
+    if (title === "name") {
+      titleKR = "이름";
+    } else if (title === "age") {
+      titleKR = "나이";
+    } else if (title === "cm_breath") {
+      titleKR = "분당 호흡수";
+    } else if (title === "cm_dp") {
+      titleKR = "이완기 혈압";
+    } else if (title === "cm_pc") {
+      titleKR = "분당 맥박수";
+    } else if (title === "cm_sp") {
+      titleKR = "수축기 혈압";
+    } else if (title === "cm_tmpt") {
+      titleKR = "체온";
+    }
+
     return (
       <div style={{ marginRight: 10 }}>
         {title === "sexx" ? null : (
@@ -115,7 +143,7 @@ class InformationIct extends Component {
                 marginLeft: 5,
               }}
             >
-              {title}
+              {titleKR}
             </p>
             {this.state["isSubmitClicked"] ? (
               this.state[title] === null || this.state[title] === "" ? (
@@ -157,13 +185,40 @@ class InformationIct extends Component {
   };
 
   selectInputComponent = (title, defaultValue, key) => {
-    // const exceptKeysArr = [
-    //   "sympu_terms1",
-    //   "sympu_terms2",
-    //   "sympu_terms3",
-    //   "sympu_terms4",
-    //   "sympu_terms5",
-    // ];
+    // {this.selectInputComponent("cm_avpu", "", 1)}
+    // {this.selectInputComponent("cm_gcs_e", "", 1)}
+    // {this.selectInputComponent("cm_gcs_v", "", 1)}
+    // {this.selectInputComponent("cm_gcs_m", "", 1)}
+    let titleKR = null;
+    if (title === "cm_avpu") {
+      titleKR = "AVPU";
+    } else if (title === "cm_gcs_e") {
+      titleKR = "GCS_Eye";
+    } else if (title === "cm_gcs_v") {
+      titleKR = "GCS_Verbal";
+    } else if (title === "cm_gcs_m") {
+      titleKR = "GCS_Motor";
+    } else if (title === "alco") {
+      titleKR = "음주여부";
+    } else if (title === "intent") {
+      titleKR = "손상의도";
+    } else if (title === "method") {
+      titleKR = "내원수단";
+    } else if (title === "mech") {
+      titleKR = "손상기전";
+    } else if (title === "place1") {
+      titleKR = "발생장소1";
+    } else if (title === "place2") {
+      titleKR = "실 내/외 여부";
+    } else if (title === "place3") {
+      titleKR = "발생장소2";
+    } else if (title === "factor_u") {
+      titleKR = "손상 유발물질";
+    } else if (title === "sports") {
+      titleKR = "스포츠 유형";
+    } else if (title === "iact") {
+      titleKR = "손상 시 활동";
+    }
 
     return (
       <div style={{ marginRight: 10 }}>
@@ -183,10 +238,10 @@ class InformationIct extends Component {
             }}
           >
             {title === "sexx"
-              ? "sex"
+              ? "성별"
               : title === "sympu"
-              ? title + Number(key + 1)
-              : title}
+              ? "주증상" + Number(key + 1)
+              : titleKR}
             {/* {title === "sympu" ? title + Number(key + 1) : title} */}
           </p>
           {this.state["isSubmitClicked"] ? (
@@ -401,19 +456,6 @@ class InformationIct extends Component {
                   />
                 )}
               </div>
-              {/* {this.componentWrapper(
-                "Date",
-                <DatePicker.RangePicker
-                  onChange={(val) => {
-                    let dateArr = [];
-                    dateArr.push(val[0]["_d"], val[1]["_d"]);
-                    this.setState({
-                      ...this.state,
-                      date: dateArr,
-                    });
-                  }}
-                />
-              )} */}
               <div style={{ display: "flex", flexDirection: "row" }}>
                 {this.componentWrapper(
                   "on_time",
