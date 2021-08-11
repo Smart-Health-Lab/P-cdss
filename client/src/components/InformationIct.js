@@ -170,13 +170,6 @@ class InformationIct extends Component {
             placeholder={""}
             onChange={(val) => {
               this.state[title] = val.target.value;
-              // let timer;
-              // if (timer) {
-              //   clearTimeout(timer);
-              // }
-              // timer = setTimeout(() => {
-              //   this.setState({ ...this.state, [title]: val.target.value });
-              // }, 3000);
             }}
           />
         )}
@@ -185,10 +178,6 @@ class InformationIct extends Component {
   };
 
   selectInputComponent = (title, defaultValue, key) => {
-    // {this.selectInputComponent("cm_avpu", "", 1)}
-    // {this.selectInputComponent("cm_gcs_e", "", 1)}
-    // {this.selectInputComponent("cm_gcs_v", "", 1)}
-    // {this.selectInputComponent("cm_gcs_m", "", 1)}
     let titleKR = null;
     if (title === "cm_avpu") {
       titleKR = "AVPU";
@@ -269,13 +258,8 @@ class InformationIct extends Component {
           onSelect={(curVal) => {
             if (title === "sympu") {
               this.state[String(title + Number(key + 1))] = curVal;
-              // this.setState({
-              //   ...this.state,
-              //   [String(title + Number(key + 1))]: curVal,
-              // });
             } else {
               this.state[title] = curVal;
-              // this.setState({ ...this.state, [title]: curVal });
             }
           }}
         >
@@ -324,10 +308,8 @@ class InformationIct extends Component {
   };
 
   render() {
-    console.log("Information.js 렌더링, state", this.state);
-    console.log("Information.js 렌더링, props", this.props);
-    // console.log(inputDataList);
-    // console.log(Object.keys(inputDataList).length);
+    // console.log("Information.js 렌더링, state", this.state);
+    // console.log("Information.js 렌더링, props", this.props);
 
     if (this.state["isResponseCorrect"]) {
       return <Redirect to="/chartIct" />;
@@ -340,7 +322,11 @@ class InformationIct extends Component {
             <Card
               title={<Title level={4}>Patient Info</Title>}
               bordered={false}
-              style={{ margin: 10, width: 700 }}
+              style={{
+                // display: "flex",
+                margin: 10,
+                width: 700,
+              }}
             >
               <Input.Group compact>
                 {[
@@ -348,9 +334,9 @@ class InformationIct extends Component {
                   "sexx",
                   "age",
                   "cm_breath",
-                  "cm_dp",
                   "cm_pc",
                   "cm_sp",
+                  "cm_dp",
                   "cm_tmpt",
                 ].map((curr, index) => {
                   return this.inputComponent(curr, index);
@@ -401,35 +387,6 @@ class InformationIct extends Component {
               </div>
             </Card>
           </div>
-          {/* <div>
-            <Card
-              title={<Title level={4}>Visit Info(삭제 예정)</Title>}
-              bordered={false}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                margin: 10,
-                width: 700,
-              }}
-            >
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                {this.inputComponent("time_took", "")}
-              </div>
-              <Input.Group compact>
-                {Object.keys(inputDataList).map((curr, index, arr) => {
-                  return curr === "in_month" ||
-                    curr === "in_weekday" ||
-                    curr === "in_hour" ||
-                    curr === "on_month" ||
-                    curr === "on_weekday" ||
-                    curr === "on_hour"
-                    ? this.selectInputComponent(curr, "", index)
-                    : null;
-                })}
-              </Input.Group>
-            </Card>
-          </div> */}
-          {/* antd calendar component */}
           <div style={{ display: "flex", flexDirection: "row" }}>
             <Card
               title={<Title level={4}>Date&time Info</Title>}
@@ -479,7 +436,6 @@ class InformationIct extends Component {
             </Card>
           </div>
         </div>
-        {/* SubmitButton */}
         <div style={{ display: "flex" }}>
           <Card title="" bordered={false} style={{ background: "none" }}>
             <Button

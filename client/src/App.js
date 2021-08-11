@@ -24,11 +24,6 @@ class App extends Component {
     };
   }
 
-  // onCollapse = (collapsed) => {
-  //   console.log(collapsed);
-  //   this.setState({ collapsed });
-  // }
-
   changeAppState = (inputData, outputData) => {
     this.setState({ inputData: inputData, outputData: outputData });
   };
@@ -50,11 +45,7 @@ class App extends Component {
 
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider
-        // collapsible
-        // collapsed={this.state.collapsed}
-        // onCollapse={this.onCollapse}
-        >
+        <Sider>
           <div className="title">
             <h1 style={{ color: "white", fontSize: 20, marginLeft: 30 }}>
               P-cdss

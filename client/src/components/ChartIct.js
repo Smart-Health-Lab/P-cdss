@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Card, Divider, Row, Col } from "antd";
+import { Card, Typography, Row, Col } from "antd";
 import Plot from "react-plotly.js";
 import { densityPlotData } from "../chartData/densityPlot";
+
+const { Title } = Typography;
 
 class ChartIct extends Component {
   state = {
@@ -87,7 +89,6 @@ class ChartIct extends Component {
   };
 
   chartCard = (title, x, y, type, mode, xPoint, yMax) => {
-    // console.log("xPoint", xPoint);
     if (title === "tbi") {
       title = "Traumatic Brain Injury";
     } else if (title === "ich") {
@@ -98,7 +99,6 @@ class ChartIct extends Component {
     return (
       <Card title={title} bordered={false} style={{ margin: 10, width: 600 }}>
         <Plot
-          // style={{ paddingTop: 0 }}
           data={[
             {
               x: x,
@@ -114,13 +114,6 @@ class ChartIct extends Component {
               mode: "lines",
               marker: { color: "#0E0189" },
             },
-            // {
-            //   x: densityPlotData.ich["x"],
-            //   y: densityPlotData.ich["y"],
-            //   type: "bar",
-            //   mode: "none",
-            //   marker: { color: "#F9AD0D" },
-            // },
           ]}
           layout={{
             width: 500,
@@ -140,20 +133,14 @@ class ChartIct extends Component {
   };
 
   render() {
-    console.log("Chart.js 렌더링, state", this.state);
-    console.log("Chart.js 렌더링, props", this.props);
-    // console.log("densityPlotData =>", densityPlotData);
-    // console.log("test", Object.entries(densityPlotData));
-    // console.log(
-    //   "inputData len =>",
-    //   Object.keys(this.state["inputData"]).length
-    // );
+    // console.log("Chart.js 렌더링, state", this.state);
+    // console.log("Chart.js 렌더링, props", this.props);
 
     return (
       <div className="">
         <Row>
           <Card
-            title="Patient's Information"
+            title={<Title level={4}>Patient's Information</Title>}
             bordered={false}
             style={{ margin: 10, width: 1840 }}
           >
@@ -175,7 +162,11 @@ class ChartIct extends Component {
         </Row>
         <Row style={{ display: "flex", justifyContent: "row" }}>
           {this.props.inputData === null ? (
-            <Card bordered={false} style={{ margin: 10, width: 1840 }}>
+            <Card
+              title={<Title level={4}>Plot</Title>}
+              bordered={false}
+              style={{ margin: 10, width: 1840 }}
+            >
               <Col style={{ margin: 10, fontSize: 15 }}>
                 {"불러올 정보가 없습니다"}
               </Col>
@@ -183,7 +174,6 @@ class ChartIct extends Component {
           ) : (
             <>
               {Object.entries(densityPlotData).map((curr, index, arr) => {
-                // console.log("map test", this.props.outputData[curr[0]]);
                 return this.chartCard(
                   curr[0],
                   curr[1]["x"],
@@ -208,13 +198,6 @@ class ChartIct extends Component {
                       mode: "markers",
                       marker: { color: "#E64506" },
                     },
-                    // {
-                    //   x: densityPlotData.tbi["x"],
-                    //   y: densityPlotData.tbi["y"],
-                    //   type: "bar",
-                    //   mode: "none",
-                    //   marker: { color: "#F9AD0D" },
-                    // },
                   ]}
                   layout={{
                     width: 500,
@@ -243,13 +226,6 @@ class ChartIct extends Component {
                       mode: "markers",
                       marker: { color: "#E64506" },
                     },
-                    // {
-                    //   x: densityPlotData.tbi["x"],
-                    //   y: densityPlotData.tbi["y"],
-                    //   type: "bar",
-                    //   mode: "none",
-                    //   marker: { color: "#F9AD0D" },
-                    // },
                   ]}
                   layout={{
                     width: 500,
@@ -267,35 +243,6 @@ class ChartIct extends Component {
             </>
           )}
         </Row>
-        {/* <Row>
-          <Card title="Result sentence 01">
-            {this.props.inputData === null ? (
-              <Col style={{ margin: 10, fontSize: 15 }}>
-                {"불러올 정보가 없습니다"}
-              </Col>
-            ) : (
-              <>
-                <div style={{ margin: 10, fontSize: 20 }}>
-                  이 환아가 속한 그룹의 뇌출혈 확률은 {}% 입니다.
-                </div>
-                <div style={{ margin: 10, fontSize: 20 }}>
-                  같은 나이 그룹에서 상위 {} percentile의 위험도에 속합니다.
-                </div>
-              </>
-            )}
-          </Card>
-        </Row>
-        <Row>
-          <Card title="Result sentence 02">
-            {this.props.inputData === null ? (
-              <Col style={{ margin: 10, fontSize: 15 }}>
-                {"불러올 정보가 없습니다"}
-              </Col>
-            ) : (
-              <div style={{ margin: 10, fontSize: 20 }}>CDSS는 CT를 {}</div>
-            )}
-          </Card>
-        </Row> */}
       </div>
     );
   }

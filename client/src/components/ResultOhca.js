@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Card, Divider, Row, Col } from "antd";
+import { Card, Typography, Row, Col } from "antd";
 import Plot from "react-plotly.js";
+
+const { Title } = Typography;
 
 const mappingDict = {
   name: "환자명",
@@ -42,7 +44,7 @@ class ResultOhca extends Component {
     return (
       <div>
         <Card
-          title="Information"
+          title={<Title level={4}>Information</Title>}
           bordered={false}
           style={{ margin: 10, width: 1840 }}
         >
@@ -67,7 +69,7 @@ class ResultOhca extends Component {
           </Row>
         </Card>
         <Card
-          title="line plot"
+          title={<Title level={4}>Line plot</Title>}
           bordered={false}
           style={{ margin: 10, width: 1840 }}
         >
@@ -87,14 +89,6 @@ class ResultOhca extends Component {
                     {
                       x: this.props.outputData["X_plot"],
                       y: this.props.outputData["Y_plot"],
-                      // type: "line",
-                      // mode: "line",
-                      // xaxis: {
-                      //   title: "Min",
-                      // },
-                      // yaxis: {
-                      //   title: "Survival rate",
-                      // },
                       line: { shape: "spline" },
                       marker: { color: "#E64506" },
                     },
